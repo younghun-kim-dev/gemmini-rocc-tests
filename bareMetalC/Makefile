@@ -1,6 +1,10 @@
 include $(abs_top_srcdir)/Makefrag
 
 tests = \
+        ws_os_single2 \
+        ws_os_single \
+        corun_ws_os_threshold \
+        ws_os_threshold \
 	mvin_mvout \
 	mvin_mvout_zeros \
 	mvin_mvout_stride \
@@ -82,7 +86,9 @@ CFLAGS := $(CFLAGS) \
 	-DMULTITHREAD=1 \
 	-mcmodel=medany \
 	-std=gnu99 \
-	-O2 \
+	-O3 \
+        -funroll-loops \
+        -fomit-frame-pointer \
 	-ffast-math \
 	-fno-common \
 	-fno-builtin-printf \

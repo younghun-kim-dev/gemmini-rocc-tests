@@ -1,6 +1,15 @@
 include $(abs_top_srcdir)/Makefrag
 
 tests = \
+        hetero_gemm_bwtest2 \
+        hetero_gemm_bwtest_rocketnowork \
+        hetero_gemm_bwtest \
+        multicore_role_test \
+        ws_os_multi \
+        ws_os_single \
+        ws_os_tradeoff3 \
+        ws_os_tradeoff2 \
+        ws_os_tradeoff \
 	mvin_mvout \
 	mvin_mvout_zeros \
 	mvin_mvout_stride \
@@ -80,9 +89,12 @@ GEMMINI_HEADERS = $(abs_top_srcdir)/include/gemmini.h $(abs_top_srcdir)/include/
 CFLAGS := $(CFLAGS) \
 	-DPREALLOCATE=1 \
 	-DMULTITHREAD=1 \
+        -DPRINT_LOCK=1 \
 	-mcmodel=medany \
 	-std=gnu99 \
-	-O2 \
+	-O3 \
+        -funroll-loops \
+        -fomit-frame-pointer \
 	-ffast-math \
 	-fno-common \
 	-fno-builtin-printf \
